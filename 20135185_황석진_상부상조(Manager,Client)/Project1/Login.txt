@@ -1,0 +1,259 @@
+#ifndef _LOGIN_H
+#define _LOGIN_H
+#include "Signup.h"
+#include "FMain.h"
+/*
+* 로그인 폼 헤더
+*/
+namespace Project1 {
+	///
+	/// 사용되는 namespace 선언
+	///
+	using namespace std;
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing; 
+	using namespace MySql::Data::MySqlClient;
+
+
+	/// <summary>
+	/// Login에 대한 요약입니다.
+	/// </summary>
+	public ref class Login : public System::Windows::Forms::Form
+	{
+	public:
+		Login(void)
+		{
+			InitializeComponent();
+			Pass_txt->PasswordChar = '*';
+			Pass_txt->MaxLength = 20;
+			//
+			//TODO: 생성자 코드를 여기에 추가합니다.
+			//
+		}
+
+	protected:
+		/// <summary>
+		/// 사용 중인 모든 리소스를 정리합니다.
+		/// </summary>
+		~Login()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+
+	///
+	/// 폼 구성하는 변수들
+	///
+	private: System::Windows::Forms::Label^  Name_lbl;
+	private: System::Windows::Forms::Label^  Id_lbl;
+	private: System::Windows::Forms::Label^  Pass_lbl;
+	private: System::Windows::Forms::TextBox^  Id_txt;
+	private: System::Windows::Forms::TextBox^  Pass_txt;
+	private: System::Windows::Forms::Button^  Login_btn;
+	private: System::Windows::Forms::Button^  Join_btn;
+	private: System::Windows::Forms::Button^  Exit_btn;
+	private: System::Windows::Forms::Label^  Find_lbl;
+
+	///
+	/// 회원번호 (다른폼에 정보 전달)
+	///
+	private: String^ index = "-1";
+
+	private:
+	/// <summary>
+	/// 필수 디자이너 변수입니다.
+	/// </summary>
+	System::ComponentModel::Container ^components;
+
+#pragma region Windows Form Designer generated code
+		/// <summary>
+		/// 디자이너 지원에 필요한 메서드입니다. 
+		/// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+		/// </summary>
+		
+		void InitializeComponent(void)
+		{
+			this->Name_lbl = (gcnew System::Windows::Forms::Label());
+			this->Id_lbl = (gcnew System::Windows::Forms::Label());
+			this->Pass_lbl = (gcnew System::Windows::Forms::Label());
+			this->Id_txt = (gcnew System::Windows::Forms::TextBox());
+			this->Pass_txt = (gcnew System::Windows::Forms::TextBox());
+			this->Login_btn = (gcnew System::Windows::Forms::Button());
+			this->Join_btn = (gcnew System::Windows::Forms::Button());
+			this->Exit_btn = (gcnew System::Windows::Forms::Button());
+			this->Find_lbl = (gcnew System::Windows::Forms::Label());
+			this->SuspendLayout();
+			// 
+			// Name_lbl
+			// 
+			this->Name_lbl->AutoSize = true;
+			this->Name_lbl->Font = (gcnew System::Drawing::Font(L"함초롬바탕", 12.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(129)));
+			this->Name_lbl->Location = System::Drawing::Point(83, 9);
+			this->Name_lbl->Name = L"Name_lbl";
+			this->Name_lbl->Size = System::Drawing::Size(89, 22);
+			this->Name_lbl->TabIndex = 0;
+			this->Name_lbl->Text = L"상 부 상 조";
+			// 
+			// Id_lbl
+			// 
+			this->Id_lbl->AutoSize = true;
+			this->Id_lbl->Location = System::Drawing::Point(12, 47);
+			this->Id_lbl->Name = L"Id_lbl";
+			this->Id_lbl->Size = System::Drawing::Size(41, 12);
+			this->Id_lbl->TabIndex = 1;
+			this->Id_lbl->Text = L"아이디";
+			// 
+			// Pass_lbl
+			// 
+			this->Pass_lbl->AutoSize = true;
+			this->Pass_lbl->Location = System::Drawing::Point(12, 74);
+			this->Pass_lbl->Name = L"Pass_lbl";
+			this->Pass_lbl->Size = System::Drawing::Size(53, 12);
+			this->Pass_lbl->TabIndex = 2;
+			this->Pass_lbl->Text = L"비밀번호";
+			// 
+			// Id_txt
+			// 
+			this->Id_txt->Location = System::Drawing::Point(72, 44);
+			this->Id_txt->Name = L"Id_txt";
+			this->Id_txt->Size = System::Drawing::Size(100, 21);
+			this->Id_txt->TabIndex = 3;
+			// 
+			// Pass_txt
+			// 
+			this->Pass_txt->Location = System::Drawing::Point(72, 71);
+			this->Pass_txt->Name = L"Pass_txt";
+			this->Pass_txt->Size = System::Drawing::Size(100, 21);
+			this->Pass_txt->TabIndex = 4;
+			// 
+			// Login_btn
+			// 
+			this->Login_btn->Location = System::Drawing::Point(179, 44);
+			this->Login_btn->Name = L"Login_btn";
+			this->Login_btn->Size = System::Drawing::Size(75, 48);
+			this->Login_btn->TabIndex = 5;
+			this->Login_btn->Text = L"로그인";
+			this->Login_btn->UseVisualStyleBackColor = true;
+			this->Login_btn->Click += gcnew System::EventHandler(this, &Login::Login_btn_Click);
+			// 
+			// Join_btn
+			// 
+			this->Join_btn->Location = System::Drawing::Point(41, 98);
+			this->Join_btn->Name = L"Join_btn";
+			this->Join_btn->Size = System::Drawing::Size(75, 23);
+			this->Join_btn->TabIndex = 6;
+			this->Join_btn->Text = L"회원가입";
+			this->Join_btn->UseVisualStyleBackColor = true;
+			this->Join_btn->Click += gcnew System::EventHandler(this, &Login::Join_btn_Click);
+			// 
+			// Exit_btn
+			// 
+			this->Exit_btn->Location = System::Drawing::Point(122, 98);
+			this->Exit_btn->Name = L"Exit_btn";
+			this->Exit_btn->Size = System::Drawing::Size(75, 23);
+			this->Exit_btn->TabIndex = 7;
+			this->Exit_btn->Text = L"종료";
+			this->Exit_btn->UseVisualStyleBackColor = true;
+			this->Exit_btn->Click += gcnew System::EventHandler(this, &Login::Exit_btn_Click);
+			// 
+			// Find_lbl
+			// 
+			this->Find_lbl->AutoSize = true;
+			this->Find_lbl->Font = (gcnew System::Drawing::Font(L"굴림", 7));
+			this->Find_lbl->Location = System::Drawing::Point(39, 124);
+			this->Find_lbl->Name = L"Find_lbl";
+			this->Find_lbl->Size = System::Drawing::Size(169, 10);
+			this->Find_lbl->TabIndex = 8;
+			this->Find_lbl->Text = L"아이디 혹은 비밀번호를 잊으셨나요\?";
+			// 
+			// Login
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(270, 143);
+			this->Controls->Add(this->Find_lbl);
+			this->Controls->Add(this->Exit_btn);
+			this->Controls->Add(this->Join_btn);
+			this->Controls->Add(this->Login_btn);
+			this->Controls->Add(this->Pass_txt);
+			this->Controls->Add(this->Id_txt);
+			this->Controls->Add(this->Pass_lbl);
+			this->Controls->Add(this->Id_lbl);
+			this->Controls->Add(this->Name_lbl);
+			this->Name = L"Login";
+			this->Text = L"로그인";
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
+		}
+#pragma endregion
+	///
+	/// 정보전달용 회원번호 set,get 메소드
+	///
+	public:
+		void setIndex(String^ val) {
+			index = val;
+		}
+		String^ getIndex() {
+			return index;
+		}
+
+	///
+	/// 로그인 버튼 클릭 이벤트
+	///
+	private: System::Void Login_btn_Click(System::Object^  sender, System::EventArgs^  e)
+	{		
+		MySqlConnection^ connection = gcnew MySqlConnection("server=my5008.gabiadb.com;user=edcation; database=education; port=3306; password=q1w2e3r4**");
+		//MySql 연결문
+		MySqlCommand^ command = gcnew MySqlCommand("select * from education.Member where memberID = '" + this->Id_txt->Text + "'and memberPassword='" + this->Pass_txt->Text + "';", connection);
+		//쿼리 실행문
+		MySqlDataReader^ reader;
+		try {
+			connection->Open(); // 데이터베이스 Open
+			reader = command->ExecuteReader(); // 쿼리문 실행
+			int count = 0; // 확인 변수 초기화
+			while (reader->Read()) { // 읽어들이는 값이 있을때 까지 반복
+				count++; // 조건에 맞는 쿼리문으로 값을 읽으면 count++
+			}
+			
+			if (count == 1) {	// 읽어온 값이 하나일 경우
+				MessageBox::Show(Id_txt->Text+"님, 환영합니다.\n"); // id표시
+				this->index = reader->GetString(0); //읽어온값의 회원번호를 index로 설정
+				this->Close(); // 폼 닫기
+			}
+			else{ // 실패 시 (값이 없을 경우)
+				MessageBox::Show("\t로그인 실패\n아이디 혹은 비밀번호를 확인하세요."); // 아이디 비밀번호확인 희망 메세지 출력
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+		}
+	}
+
+	///
+	/// 회원가입 버튼 클릭 이벤트
+	///
+	private: System::Void Join_btn_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		Signup^ signfrm = gcnew Signup; // 회원가입 폼 생성
+		signfrm->Show(); // 회원가입 폼 띄우기
+	}
+
+	///
+	/// 종료 버튼 클릭 이벤트
+	///
+	private: System::Void Exit_btn_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+		this->Close(); // 폼닫기
+	}
+};
+}
+
+#endif

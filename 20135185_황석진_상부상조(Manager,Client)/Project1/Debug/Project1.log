@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: 중간 디렉터리(Debug\)에 다른 프로젝트(Project1.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.MetaGen.targets(91,5): warning : 필요한 "C:\PROGRAM FILES\MYSQL\MYSQL CONNECTOR NET 6.10.5\ASSEMBLIES\V4.5.2\MYSQL.DATA.DLL" 파일이 없습니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.MetaGen.targets(91,5): warning : 필요한 "C:\PROGRAM FILES\MYSQL\MYSQL CONNECTOR NET 6.10.5\ASSEMBLIES\V4.5.2\MYSQL.DATA.DLL" 파일이 없습니다.
+  Applicate.obj : 관리되는 코드가 있을 때 /DEBUG:FASTLINK은(는) 지원되지 않습니다. /DEBUG:FULL을 사용하여 링크를 다시 시작합니다.
+  Project1.vcxproj -> C:\Users\chulss\Desktop\20135185_황석진_상부상조(Manager,Client)\Project1\Debug\Manager.exe

@@ -1,0 +1,5 @@
+﻿C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Client.cpp
+Client.cpp(8): warning C4829: main 함수에 대한 매개 변수가 잘못된 것 같습니다. 'int main(Platform::Array<Platform::String^>^ argv)'를 사용하십시오.
+  Project2.vcxproj -> C:\Users\iMac\Desktop\C++\20135185_황석진_상부상조(Manager,Client)\Project1\Debug\Client.exe
+  Project2.vcxproj -> C:\Users\iMac\Desktop\C++\20135185_황석진_상부상조(Manager,Client)\Project1\Debug\Client.pdb (Full PDB)
